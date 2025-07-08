@@ -1,17 +1,22 @@
-import 'zone.js'; 
+// src/app/app.config.ts
+import 'zone.js';
 import { ApplicationConfig, importProvidersFrom } from '@angular/core';
-import { provideRouter } from '@angular/router';
+import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
+import { provideRouter, withComponentInputBinding } from '@angular/router';
 import { provideHttpClient, withFetch } from '@angular/common/http';
-import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { InMemoryDataService } from './message.service';
 import { routes } from './app.routes';
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideRouter(routes),
-    provideHttpClient(withFetch()),
+    // Angular 必須モジュール
     importProvidersFrom(
-      HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, { dataEncapsulation: false })
-    )
+      BrowserModule,
+      FormsModule,
+    ),
+    // HTTP クライアント（fetch API を有効化）
+    provideHttpClient(withFetch()),
+    // ルーティング
+    provideRouter(routes, withComponentInputBinding()),
   ]
 };

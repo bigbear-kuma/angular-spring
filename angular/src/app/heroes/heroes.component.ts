@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
 import { Hero } from '../hero';
@@ -8,7 +8,7 @@ import { HeroService } from '../hero.service';
 @Component({
   selector: 'app-heroes',
   standalone: true,
-  imports: [RouterModule, CommonModule],
+  imports: [RouterLink, CommonModule],
   templateUrl: './heroes.component.html',
   styleUrls: ['./heroes.component.css']
 })
@@ -23,7 +23,10 @@ export class HeroesComponent implements OnInit {
 
   getHeroes(): void {
     this.heroService.getHeroes()
-    .subscribe(heroes => this.heroes = heroes);
+    .subscribe(heroes => { 
+      console.log('取得した heroes:', heroes);
+      this.heroes = heroes;
+    });
   }
 
   add(name: string): void {

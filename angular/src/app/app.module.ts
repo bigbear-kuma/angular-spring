@@ -2,9 +2,11 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { RouterModule }         from '@angular/router';            // ← 追加
+import { routes }               from './app.routes';  
 
-import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { InMemoryDataService } from './message.service';
+// import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+// import { InMemoryDataService } from './message.service';
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -21,14 +23,9 @@ import { MessagesComponent } from './messages/messages.component';
     BrowserModule,
     FormsModule,
     AppRoutingModule,
-    HttpClientModule,
+    RouterModule.forRoot(routes),   // ← ここが必須
 
-    // The HttpClientInMemoryWebApiModule module intercepts HTTP requests
-    // and returns simulated server responses.
-    // Remove it when a real server is ready to receive requests.
-    HttpClientInMemoryWebApiModule.forRoot(
-      InMemoryDataService, { dataEncapsulation: false }
-    )
+    // HttpClientInMemoryWebApiModuleは本番API利用時は不要
   ],
   
 })

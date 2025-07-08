@@ -18,9 +18,34 @@ repositories {
 }
 
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+	// Web（REST API）の機能を提供
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+
+	// MyBatis を Spring Boot で使うためのスターター
+	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.1'
+
+	// PostgreSQL ドライバ
+	runtimeOnly 'org.postgresql:postgresql'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
+	 // Spring Boot の基本機能
+	implementation 'org.springframework.boot:spring-boot-starter'
+	// Web (REST API) 機能一式：RestController や Mapping アノテーションを提供
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	// JPA（既に入れているはずですが念のため）
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'jakarta.persistence:jakarta.persistence-api:3.1.0'
+	implementation 'org.hibernate.orm:hibernate-core:6.6.18.Final'
+	testImplementation 'jakarta.persistence:jakarta.persistence-api:3.1.0'
+	// PostgreSQL ドライバ（既に入れているはずですが念のため）
+	runtimeOnly 'org.postgresql:postgresql'
+
+	implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+  	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.1' 
+  	runtimeOnly 'org.postgresql:postgresql:42.5.0'
 }
 
 tasks.named('test') {

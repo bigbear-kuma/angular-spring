@@ -1,14 +1,32 @@
 // src/app/app.component.ts
-import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
-import { MessagesComponent } from './messages/messages.component';
+import { Component }        from '@angular/core';
+import { RouterOutlet }     from '@angular/router';
+import { RouterLink } from '@angular/router';
+
+import { DashboardComponent }  from './dashboard/dashboard.component';
+import { HeroesComponent }     from './heroes/heroes.component';
+import { HeroDetailComponent } from './hero-detail/hero-detail.component';
+import { HeroSearchComponent } from './hero-search/hero-search';
+import { MessagesComponent }   from './messages/messages.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterModule, MessagesComponent],
-  templateUrl: './app.component.html',  // ← テンプレート名も慣例に
-  styleUrls:  ['./app.component.css']
+  imports: [
+    RouterOutlet,
+    
+    MessagesComponent, 
+    RouterLink
+  ],
+  template: `
+    <h1>{{title}}</h1>
+    <nav>
+      <a routerLink="/dashboard">Dashboard</a>
+      <a routerLink="/heroes">Heroes</a>
+    </nav>
+    <router-outlet></router-outlet>
+    <app-messages></app-messages>
+  `
 })
 export class AppComponent {
   title = 'Tour of Heroes';
